@@ -1,0 +1,51 @@
+PROGRAM AirgeadBankingApp
+
+START
+    REPEAT
+        DISPLAY "**********************************"
+        DISPLAY "********** Data Input ************"
+        
+        PROMPT user for initialInvestment (must be positive real number)
+        PROMPT user for monthlyDeposit (must be non-negative real number)
+        PROMPT user for annualInterest (must be positive real number)
+        PROMPT user for numberOfYears (must be positive integer)
+        
+        DISPLAY "Press any key to continue . . ."
+        WAIT for user keypress
+        
+        CREATE Investment object with (initialInvestment, monthlyDeposit, annualInterest, numberOfYears)
+        
+        // Print Report 1: Without Monthly Deposits
+        CALL PrintReportWithoutMonthlyDeposits()
+            DISPLAY Header: "Balance and Interest Without Additional Monthly Deposits"
+            SET currentBalance = initialInvestment
+            FOR year = 1 TO numberOfYears:
+                SET yearEndInterest = 0
+                FOR month = 1 TO 12:
+                    SET monthlyInterest = currentBalance * ((annualInterest / 100) / 12)
+                    SET yearEndInterest = yearEndInterest + monthlyInterest
+                    SET currentBalance = currentBalance + monthlyInterest
+                END FOR
+                DISPLAY year, currentBalance, yearEndInterest (formatted as currency)
+            END FOR
+
+        // Print Report 2: With Monthly Deposits
+        CALL PrintReportWithMonthlyDeposits()
+            DISPLAY Header: "Balance and Interest With Additional Monthly Deposits"
+            SET currentBalance = initialInvestment
+            FOR year = 1 TO numberOfYears:
+                SET yearEndInterest = 0
+                FOR month = 1 TO 12:
+                    SET total = currentBalance + monthlyDeposit
+                    SET monthlyInterest = total * ((annualInterest / 100) / 12)
+                    SET yearEndInterest = yearEndInterest + monthlyInterest
+                    SET currentBalance = total + monthlyInterest
+                END FOR
+                DISPLAY year, currentBalance, yearEndInterest (formatted as currency)
+            END FOR
+            
+        PROMPT user: "Would you like to try different values? (y/n)"
+        READ userChoice
+        
+    WHILE userChoice is 'y' OR 'Y'
+END PROGRAM
