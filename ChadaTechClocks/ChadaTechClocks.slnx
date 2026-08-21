@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="ChadaTechClocks/ChadaTechClocks.vcxproj" Id="c1644be3-24b8-47a0-9f83-645ca74d08be" />
+</Solution>

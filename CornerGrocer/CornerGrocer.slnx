@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path="CS210_Project_Three_Input_File.txt" />
+  </Folder>
+  <Project Path="CornerGrocer/CornerGrocer.vcxproj" />
+</Solution>
